@@ -204,10 +204,10 @@ export default function WeddingExperience() {
         <div className="venue-copy"><span className="eyebrow">WHERE WE MEET</span><h2>Meet us<br /><em>under the stars.</em></h2><FloralMark /><h3>{weddingConfig.venue}</h3><p>{weddingConfig.address}</p><p className="venue-date"><CalendarDays size={16} />{weddingConfig.dateLabel}</p><a className="button button-dark" href={weddingConfig.mapUrl} target="_blank" rel="noreferrer">Get directions <ArrowRight size={16} /></a></div>
       </section>
 
-      <section className="rsvp-section section-pad" id="rsvp">
+      {/* <section className="rsvp-section section-pad" id="rsvp">
         <div className="rsvp-intro"><span className="eyebrow">KINDLY REPLY</span><h2>Will you join<br /><em>our forever?</em></h2><p>Your presence is the most meaningful gift. Let us know if we can save you a seat.</p><FloralMark /><span className="script-note">With love, {weddingConfig.bride} & {weddingConfig.groom}</span></div>
         <div className="rsvp-panel"><RSVPForm /></div>
-      </section>
+      </section> */}
 
       <footer className="footer">
         <FloralMark />
