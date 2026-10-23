@@ -4,6 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, ArrowRight, CalendarDays, Check, ChevronLeft, ChevronRight, Clock3, Heart, MapPin, Menu, Music2, Pause, Play, Sparkles, X } from "lucide-react";
 import { weddingConfig, type WeddingEvent } from "@/config/wedding.config";
+import Navbar from "../Navbar";
+import WeddingMusic from "./WeddingMusic";
 
 const reveal = {
   hidden: { opacity: 0, y: 24 },
@@ -131,12 +133,11 @@ export default function WeddingExperience() {
     </AnimatePresence>
 
     {opened && <>
-      <header className="site-header">
-        <a className="brand" href="#home" aria-label="Back to top"><span className="brand-mark">A<span>·</span>R</span><span className="brand-caption">THE WEDDING OF</span></a>
-        <button className="mobile-menu-button" aria-label="Toggle navigation" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</button>
-        <nav className={menuOpen ? "nav-open" : ""}>{navItems.map(([label, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}</nav>
-        <a className="header-rsvp" href="#rsvp">Kindly RSVP <ArrowRight size={14} /></a>
-      </header>
+      {/* <header className="site-header">
+    
+      </header> */}
+
+      <Navbar />
 
       <section className="hero" id="home">
         <div className="hero-orb orb-one" /><div className="hero-orb orb-two" />
@@ -216,8 +217,10 @@ export default function WeddingExperience() {
         <div className="footer-bottom"><span>AYESHA & RAYYAN · WEDDING INVITATION</span><a href="#home">BACK TO TOP ↑</a></div>
       </footer>
 
-      <button className={`music-toggle ${musicOn ? "music-active" : ""}`} onClick={() => setMusicOn(!musicOn)} aria-label={musicOn ? "Turn music off" : "Turn music on"} title="Optional music control">{musicOn ? <Pause size={17} /> : <Music2 size={17} />}{musicOn && <span>Music on</span>}</button>
-      {musicOn && <div className="music-notice" role="status">Add your audio file in <code>src/config/wedding.config.ts</code> to enable music playback.</div>}
+      {/* <button className={`music-toggle ${musicOn ? "music-active" : ""}`} onClick={() => setMusicOn(!musicOn)} aria-label={musicOn ? "Turn music off" : "Turn music on"} title="Optional music control">{musicOn ? <Pause size={17} /> : <Music2 size={17} />}{musicOn && <span>Music on</span>}</button>
+      {musicOn && <div className="music-notice" role="status">Add your audio file in <code>src/config/wedding.config.ts</code> to enable music playback.</div>} */}
+
+      <WeddingMusic />
 
       <AnimatePresence>{galleryIndex !== null && <motion.div className="lightbox" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={closeGallery} role="dialog" aria-modal="true" aria-label="Photo gallery viewer"><button className="lightbox-close" onClick={closeGallery} aria-label="Close gallery"><X /></button><button className="lightbox-prev" onClick={e => { e.stopPropagation(); nextPhoto(-1); }} aria-label="Previous photo"><ChevronLeft /></button><motion.img key={galleryIndex} src={weddingConfig.gallery[galleryIndex].src} alt={weddingConfig.gallery[galleryIndex].alt} initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} onClick={e => e.stopPropagation()} /><button className="lightbox-next" onClick={e => { e.stopPropagation(); nextPhoto(1); }} aria-label="Next photo"><ChevronRight /></button><p>{String(galleryIndex + 1).padStart(2, "0")} / {String(weddingConfig.gallery.length).padStart(2, "0")}</p></motion.div>}</AnimatePresence>
     </>}
